@@ -1,3 +1,7 @@
+@import 'variables';
+@import 'utils';
+@import 'fonts';
+
 *,
 *::after,
 *::before {
@@ -9,4 +13,9 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body{
+  width: auto;
+  height: 100vh;
 }
