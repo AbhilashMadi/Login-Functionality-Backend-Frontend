@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import '../../scss/layout.scss';
 
 interface ILayout {
   child: ReactNode;
@@ -11,9 +12,9 @@ const Layout: FC<ILayout> = (props) => {
   return (
     <>
       <Header />
-      <div>
+      <main className='container'>
         {child}
-      </div>
+      </main>
       <Footer />
     </>
   )

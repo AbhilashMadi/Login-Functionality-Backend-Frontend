@@ -6,4 +6,4 @@ const Username = () => {
   )
 }
 
-export default Username;
+export default Username
