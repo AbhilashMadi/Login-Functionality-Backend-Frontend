@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 interface IUseThemeMode {
   theme: string;
-  toggleThemeMode: () => void;
+  toggleTheme: () => void;
 }
 
 const useThemeMode = (): IUseThemeMode => {
@@ -16,11 +16,11 @@ const useThemeMode = (): IUseThemeMode => {
     localStorage.setItem('savedTheme', theme);
   }, [theme]);
 
-  const toggleThemeMode = (): void => {
+  const toggleTheme = (): void => {
     setTheme((mode) => (mode === 'light' ? 'dark' : 'light'))
   }
 
-  return { theme, toggleThemeMode }
+  return { theme, toggleTheme };
 }
 
 export default useThemeMode;

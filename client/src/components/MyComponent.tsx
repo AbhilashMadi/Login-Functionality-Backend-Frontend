@@ -1,21 +1,22 @@
 import { useEffect } from 'react';
-import useThemeMode from '../utils/hooks/useThemeMode';
-
+import { useTheme } from '../context/ThemeProvider';
 
 const MyComponent = () => {
-  const { theme, toggleThemeMode } = useThemeMode();
+  const { theme, toggleTheme } = useTheme();
+
+  console.log(theme);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme && ['light', 'dark'].includes(savedTheme)) {
-      toggleThemeMode();
+      toggleTheme();
     }
-  }, [toggleThemeMode]);
+  }, [toggleTheme]);
 
   return (
-    <div className="app testing testing" data-theme={theme}>
-      <h1>My App</h1>
-      <button onClick={toggleThemeMode}>Toggle Theme</button>
+    <div className="app">
+      <h1 className='testing'>My App</h1>
+      <button onClick={toggleTheme}>Toggle Theme</button>
     </div>
   );
 };
