@@ -3,7 +3,6 @@ import Layout from './components/common/Layout';
 import { Routes, Route } from 'react-router-dom';
 import { routes, IRouteObject } from './routes/routes';
 import { ThemeProvider } from './context/ThemeProvider';
-import MyComponent from './components/MyComponent';
 
 const App: FC = (props) => {
   return (
@@ -16,7 +15,6 @@ const App: FC = (props) => {
             })
           }
         </Routes>
-        <MyComponent />
       </ThemeProvider>
     </Suspense>
   )
