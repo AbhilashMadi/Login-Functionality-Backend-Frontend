@@ -1,0 +1,118 @@
+@mixin inter-font($font-size: 1rem, $font-weight: auto, $line-height: normal, $letter-spacing: normal, $text-transform: none) {
+  font-family: 'Inter', sans-serif;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+  text-transform: $text-transform;
+}
+
+@mixin flex-center($flex-direction: row) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $flex-direction;
+}
+
+@mixin breakpoint($min-width: null, $max-width: null) {
+  @if min-width {
+    @media (min-width:$min-width) {
+      @content;
+    }
+  }
+
+  @if max-width {
+    @media (max-width:$max-width) {
+      @content;
+    }
+  }
+}
+
+@mixin gradient($start-color, $end-color, $degrees: null) {
+  background: $start-color;
+  background: linear-gradient($degrees, $start-color, $end-color);
+}
+
+@mixin placeholder-color($color) {
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+
+  &:-moz-placeholder {
+    color: $color;
+  }
+
+  &::-moz-placeholder {
+    color: $color;
+  }
+
+  &:-ms-input-placeholder {
+    color: $color;
+  }
+
+  &::placeholder {
+    color: $color;
+  }
+}
+
+@mixin box-shadow($x: 0, $y: 0, $blur: 0, $spread: 0, $color: rgba(0, 0, 0, 0.1)) {
+  box-shadow: $x $y $blur $spread $color;
+}
+
+@mixin input-reset {
+  appearance: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background-color: transparent;
+
+  &::-webkit-input-placeholder {
+    color: inherit;
+  }
+
+  &::-moz-placeholder {
+    color: inherit;
+  }
+
+  &::-ms-input-placeholder {
+    color: inherit;
+  }
+
+  &::placeholder {
+    color: inherit;
+  }
+}
+
+@mixin input-focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+@mixin checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: all 0.2s ease-in-out;
+
+  &:checked {
+    background-color: #007bff;
+    border-color: #007bff;
+
+    &:before {
+      content: '\f00c';
+      display: block;
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      font-size: 16px;
+      color: #fff;
+      text-align: center;
+      line-height: 20px;
+    }
+  }
+}

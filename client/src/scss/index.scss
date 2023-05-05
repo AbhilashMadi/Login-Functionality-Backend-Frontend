@@ -1,12 +1,29 @@
+@import 'variables';
+@import 'utils';
+@import 'fonts';
+@import 'theme';
+
 *,
 *::after,
 *::before {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-body {
+html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  width: auto;
+  height: 100vh;
+}
+
+.testing {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  width: 500px;
+  height: 500px;
 }
