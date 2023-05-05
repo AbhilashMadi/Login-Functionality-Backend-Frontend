@@ -1,14 +1,32 @@
-import {FC,ReactNode,createContext} from 'react';
+import { FC, ReactNode, createContext, useState } from 'react';
 
-interface ThemeContext{
+export type Theme = 'light' | 'dark';
+
+export interface ThemeContextType {
+  theme: Theme;
+  toggleTheme: () => void;
+}
+
+export const ThemeContext = createContext<ThemeContextType>({
+  theme: 'light',
+  toggleTheme: () => { },
+});
+
+interface IThemeProvider {
   children: ReactNode
 }
 
-export const ThemeContext = createContext({});
+export const ThemeProvider: FC<IThemeProvider> = ({ children }) => {
+  const [theme, setTheme] = useState<Theme>('light');
 
-const ThemeProvider:FC<ThemeContext> = ({children}) => {
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+    localStorage.setItem('savedTheme', theme === 'light' ? 'dark' : 'light');
+  };
+
   return (
-    <ThemeContext.Provider value={[{theme,isDark},toggleTheme]}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
     </ThemeContext.Provider>
-  )
-}
+  );
+};

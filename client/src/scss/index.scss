@@ -1,6 +1,7 @@
 @import 'variables';
 @import 'utils';
 @import 'fonts';
+@import 'theme';
 
 *,
 *::after,
@@ -15,7 +16,14 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body{
+body {
   width: auto;
   height: 100vh;
+}
+
+.testing {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  width: 500px;
+  height: 500px;
 }

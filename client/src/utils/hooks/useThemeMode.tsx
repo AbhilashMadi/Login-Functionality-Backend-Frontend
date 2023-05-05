@@ -1,24 +1,26 @@
-import { FC, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-interface IUseThemeReturn {
-  themeMode: string;
+interface IUseThemeMode {
+  theme: string;
   toggleThemeMode: () => void;
 }
 
-const useThemeMode = (): IUseThemeReturn => {
+const useThemeMode = (): IUseThemeMode => {
   const userThemeMode = window.matchMedia('(prefers-color-schema: dark)').matches
     ? 'dark'
     : 'light';
 
-  const [themeMode, setThemeMode] = useState<string>(userThemeMode);
+  const [theme, setTheme] = useState<string>(userThemeMode);
 
   useEffect(() => {
-    localStorage.setItem('themeMode', themeMode);
-  }, [themeMode]);
+    localStorage.setItem('savedTheme', theme);
+  }, [theme]);
 
   const toggleThemeMode = (): void => {
-    setThemeMode((mode) => (mode === 'light' ? 'dark' : 'light'))
+    setTheme((mode) => (mode === 'light' ? 'dark' : 'light'))
   }
 
-  return { themeMode, toggleThemeMode }
+  return { theme, toggleThemeMode }
 }
+
+export default useThemeMode;
