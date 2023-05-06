@@ -1,8 +1,16 @@
-import React from 'react'
+import React from 'react';
+import { toast } from 'react-hot-toast';
 
 const Username = () => {
+  const showToast = () => {
+    toast('Hello world');
+  }
   return (
-    <div>Username</div>
+    <div>Username
+      <div>
+        <button onClick={showToast}>show toast</button>
+      </div>
+    </div>
   )
 }
 
