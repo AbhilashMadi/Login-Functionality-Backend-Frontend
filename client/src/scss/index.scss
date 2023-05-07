@@ -2,6 +2,7 @@
 @import 'utils';
 @import 'fonts';
 @import 'theme';
+@import 'customs';
 
 *,
 *::after,
@@ -20,9 +21,10 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
+.container {
   width: auto;
-  height: 100vh;
+  min-height: 100vh;
+  @include flex-center
 }
 
 .testing {

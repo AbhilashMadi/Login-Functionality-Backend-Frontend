@@ -1,16 +1,13 @@
 import React from 'react';
 import { toast } from 'react-hot-toast';
+import CustomButton from '../components/custom/CustomButton';
 
 const Username = () => {
-  const showToast = () => {
-    toast('Hello world');
-  }
+
   return (
-    <div>Username
-      <div>
-        <button onClick={showToast}>show toast</button>
-      </div>
-    </div>
+    <>
+    <CustomButton text='button text'/>
+    </>
   )
 }
 
