@@ -1,7 +1,6 @@
 /*
 ** Custom Button
 */
-
 .custom-button {
   padding: 1.25rem 7.5rem;
   outline: none;
@@ -10,4 +9,42 @@
   @include inter-font(1rem, 600, 1.25rem, normal, capitalize);
   color: var(--text-color-one);
   border-radius: 0.625rem;
+
+  &:is(:active, :focus) {
+    outline: none;
+  }
+}
+
+/*
+** Custom Input
+*/
+.custom-input-container {
+  border: 1px solid red;
+
+  .cutsom-label {
+    @include inter-font(1rem, 400, 1.25rem, normal, normal);
+    margin-bottom: 0.625rem;
+    color: var(--secondary-color)
+  }
+
+  .custom-required {
+    color: red;
+  }
+
+  .custom-button::placeholder {
+    color: var(--tertary-color);
+  }
+
+  .custom-input {
+    padding: 1rem;
+    @include inter-font(1rem);
+    color: var(--tertary-color);
+    border: 2px solid var(--tertary-light-color);
+    border-radius: 0.625rem;
+    caret-color: var(--secondary-color);
+
+    &:is(:focus,:active){
+      outline: none;
+    }
+  }
 }
