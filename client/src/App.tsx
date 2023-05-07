@@ -3,12 +3,15 @@ import Layout from './components/common/Layout';
 import { Routes, Route } from 'react-router-dom';
 import { routes, IRouteObject } from './routes/routes';
 import { ThemeProvider } from './context/ThemeProvider';
-import MyComponent from './components/MyComponent';
+import { Toaster } from 'react-hot-toast';
 
 const App: FC = (props) => {
   return (
     <Suspense fallback={<div>loading..</div>}>
       <ThemeProvider>
+        <Toaster
+          position='top-right'
+          reverseOrder={false} />
         <Routes>
           {
             routes.map((item: IRouteObject) => {
@@ -16,7 +19,6 @@ const App: FC = (props) => {
             })
           }
         </Routes>
-        <MyComponent />
       </ThemeProvider>
     </Suspense>
   )

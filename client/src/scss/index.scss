@@ -2,6 +2,7 @@
 @import 'utils';
 @import 'fonts';
 @import 'theme';
+@import 'customs';
 
 *,
 *::after,
@@ -11,14 +12,19 @@
   box-sizing: border-box;
 }
 
+*>* {
+  transition: all 0.2s ease-in-out;
+}
+
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
+.container {
   width: auto;
-  height: 100vh;
+  min-height: 100vh;
+  @include flex-center
 }
 
 .testing {

@@ -1,9 +1,10 @@
-import { FC, ReactNode, createContext, useState } from 'react';
+import { FC, ReactNode, createContext, useContext, useEffect } from 'react';
+import useThemeMode from '../utils/hooks/useThemeMode';
 
 export type Theme = 'light' | 'dark';
 
 export interface ThemeContextType {
-  theme: Theme;
+  theme: string;
   toggleTheme: () => void;
 }
 
@@ -17,12 +18,13 @@ interface IThemeProvider {
 }
 
 export const ThemeProvider: FC<IThemeProvider> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>('light');
+  var { theme, toggleTheme } = useThemeMode();
 
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-    localStorage.setItem('savedTheme', theme === 'light' ? 'dark' : 'light');
-  };
+  useEffect(() => {
+    document.getElementById('root')?.setAttribute('data-theme', theme)
+  }, [theme]);
+
+  console.log(theme);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
@@ -30,3 +32,7 @@ export const ThemeProvider: FC<IThemeProvider> = ({ children }) => {
     </ThemeContext.Provider>
   );
 };
+
+export const useTheme = () => {
+  return useContext(ThemeContext)
+}

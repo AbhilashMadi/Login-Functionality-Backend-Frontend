@@ -1,8 +1,13 @@
-import React from 'react'
+import React from 'react';
+import { toast } from 'react-hot-toast';
+import CustomButton from '../components/custom/CustomButton';
 
 const Username = () => {
+
   return (
-    <div>Username</div>
+    <>
+    <CustomButton text='button text'/>
+    </>
   )
 }
 
