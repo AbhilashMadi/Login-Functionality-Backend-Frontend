@@ -24,12 +24,6 @@ html {
 .container {
   width: auto;
   min-height: 100vh;
-  @include flex-center
-}
-
-.testing {
-  background-color: var(--primary-color);
-  color: var(--background-color);
-  width: 500px;
-  height: 500px;
+  @include flex-center;
+  background-color: var(--main-background);
 }

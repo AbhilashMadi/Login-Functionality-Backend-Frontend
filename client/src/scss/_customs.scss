@@ -24,7 +24,7 @@
   .cutsom-label {
     @include inter-font(1rem, 400, 1.25rem, normal, normal);
     margin-bottom: 0.625rem;
-    color: var(--secondary-color)
+    color: var(--secondary-color);
   }
 
   .custom-required {
@@ -37,14 +37,43 @@
 
   .custom-input {
     padding: 1rem;
+    width: auto;
     @include inter-font(1rem);
     color: var(--tertary-color);
     border: 2px solid var(--tertary-light-color);
     border-radius: 0.625rem;
     caret-color: var(--secondary-color);
+    background-color: transparent;
+    width: 18rem;
 
     &:is(:focus,:active){
       outline: none;
     }
   }
+}
+
+/*
+** Custom Avatar
+*/
+
+.custom-avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.custom-avatar span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
