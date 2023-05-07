@@ -1,0 +1,13 @@
+/*
+** Custom Button
+*/
+
+.custom-button {
+  padding: 1.25rem 7.5rem;
+  outline: none;
+  border: none;
+  background-image: var(--gradient-one);
+  @include inter-font(1rem, 600, 1.25rem, normal, capitalize);
+  color: var(--text-color-one);
+  border-radius: 0.625rem;
+}
