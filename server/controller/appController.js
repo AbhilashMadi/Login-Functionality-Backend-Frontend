@@ -1,0 +1,108 @@
+
+import UserModal from '../model/user.modal.js';
+import bcrypt from 'bcrypt';
+
+/** POST: http://localhost:3000/v1/register
+ * @param : [
+ * "username": "example123",
+ * "password": "admin123",
+ * "email": "example@gmail.com",
+ * "first_name": "bill",
+ * "last_name":"jobs",
+ * "mobile": 1234567890,
+ * "address": "Apt. 556, Kulas Light, Gwenborough",
+ * "profile": "",
+ * ]
+*/
+export async function register(req, res) {
+
+  try {
+    const { username, password, profile, email } = req.body;
+
+    // Check if username already exists
+    const existingUser = await UserModal.findOne({ username });
+    if (existingUser) {
+      return res.status(400).send({ error: "Username already exists" });
+    }
+
+    // Check if email already exists
+    const existingEmail = await UserModal.findOne({ email });
+    if (existingEmail) {
+      return res.status(400).send({ error: "Email already exists" });
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create new user
+    const user = new UserModal({
+      username,
+      password: hashedPassword,
+      profile: profile || '',
+      email,
+    });
+
+    // Save user to database
+    await user.save();
+
+    return res.status(201).send({ msg: "User registered successfully" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({ error: "Internal server error" });
+  }
+}
+
+/**POST: http://localhost:3000/v1/login
+ * @param {
+ * username: 'steve',
+ * password: 'jobsApp@1'
+ * }
+ */
+export async function login(req, res) {
+  res.json('login route');
+}
+
+/**GET: http://localhost:3000/v1/user/steve
+ * 
+ */
+export async function getUser(req, res) {
+  res.json('get-user route');
+}
+
+/**PUT: http://localhost:3000/v1/update-user
+ * @param: {
+ * "id": "<userid>"
+ * }
+ * body: {
+ * firstName: '',
+ * address: '',
+ * profile: ''
+ * }
+ */
+export async function updateUser(req, res) {
+  res.json('update-user route');
+}
+
+/**GET: http://localhost:3000/v1/generate-otp */
+export async function generateOTP(req, res) {
+  res.json('generate-user route');
+}
+
+/**GET: http://localhost:3000/v1/verify-otp */
+export async function verifyOTP(req, res) {
+  res.json('verify-otp route')
+}
+
+/**GET: http://localhost:3000/v1/create-reset-session 
+ * successfully redirect the user when OTP is valid
+*/
+export async function createResetSession(req, res) {
+  res.json('create-reset-session route')
+}
+
+/**PUT: http://localhost:3000/v1/reset-password
+ * update the password when we have valid session
+ */
+export async function resetPassword(req, res) {
+  res.json('reset-passwrod route')
+}
