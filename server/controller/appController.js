@@ -1,7 +1,6 @@
 
 import UserModal from '../model/user.modal.js';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
 import generateJwtToken from '../helpers.js';
@@ -96,7 +95,25 @@ export async function login(req, res) {
  * 
  */
 export async function getUser(req, res) {
-  res.json('get-user route');
+  const { username } = req.params;
+
+  try {
+    if (!username) {
+      return res.status(400).send({ error: "Invalid username" });
+    }
+
+    const user = await UserModal.findOne({ username });
+
+    if (!user) {
+      return res.status(404).send({ error: "User not found" });
+    }
+
+    return res.status(200).send(user);
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send({ error: "Internal server error" });
+  }
 }
 
 /**PUT: http://localhost:3000/v1/update-user

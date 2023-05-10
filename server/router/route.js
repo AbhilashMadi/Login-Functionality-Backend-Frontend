@@ -4,11 +4,14 @@ const router = Router();
 /** CONTROLLERS */
 import * as controller from '../controller/appController.js';
 
+/** MIDDLEWARES */
+import verifyUser from '../middleware/middleware.js';
+
 /** POST Methods */
 router.route('/register').post(controller.register);
 // router.route('/register-mail').post();
-router.route('/authonticate').post((req,res) => res.end());
-router.route('/login').post(controller.login);
+router.route('/authonticate').post((req, res) => res.end());
+router.route('/login').post(verifyUser, controller.login);
 
 /** GET Methods */
 router.route('/user/:username').get(controller.getUser);
