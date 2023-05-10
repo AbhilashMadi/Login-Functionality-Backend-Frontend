@@ -129,7 +129,21 @@ export async function getUser(req, res) {
  * }
  */
 export async function updateUser(req, res) {
-  res.json('update-user route');
+  try {
+    const { id } = req.query;
+
+    if (!id) {
+      return res.status(404).send({ error: "User Id not found" });
+    }
+
+    const body = req.body;
+    await UserModal.updateOne({ _id: id }, body);
+
+    return res.status(201).send({ msg: "User record updated✌️" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send({ error: "Internal server error" });
+  }
 }
 
 /**GET: http://localhost:3000/v1/generate-otp */

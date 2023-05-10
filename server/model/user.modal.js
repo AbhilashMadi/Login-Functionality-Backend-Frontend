@@ -22,8 +22,6 @@ const UserSchema = new mongoose.Schema({
   mobile: { type: Number },
   address: { type: String },
   profile: { type: String },
-  created: { type: Date, default: Date.now },
-  modified: { type: Date, default: Date.now }
-});
+}, { timestamps: true });
 
 export default mongoose.model('User', UserSchema);
