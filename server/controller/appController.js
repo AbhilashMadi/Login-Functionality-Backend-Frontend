@@ -108,7 +108,9 @@ export async function getUser(req, res) {
       return res.status(404).send({ error: "User not found" });
     }
 
-    return res.status(200).send(user);
+    //removeing the password and unnecessary data from the object and sending the response
+    const { password, ...rest } = Object.assign({}, user.toJSON());
+    return res.status(200).send(rest);
 
   } catch (error) {
     console.error(error);
