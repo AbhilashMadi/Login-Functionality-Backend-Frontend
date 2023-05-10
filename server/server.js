@@ -12,7 +12,8 @@ app.use(cors());
 app.use(morgan('tiny'));
 app.disable('x-powerd-by'); //less hackers know about stack
 
-const port = 8080;
+const port = process.env.PORT || 8080;
+const host = process.env.HOST ||'localhost';
 
 /* HTTP GET request */
 app.get('/', (req, res) => {

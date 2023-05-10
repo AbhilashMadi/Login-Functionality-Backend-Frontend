@@ -1,6 +1,10 @@
 
 import UserModal from '../model/user.modal.js';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
+import generateJwtToken from '../helpers.js';
 
 /** POST: http://localhost:3000/v1/register
  * @param : [
@@ -59,7 +63,33 @@ export async function register(req, res) {
  * }
  */
 export async function login(req, res) {
-  res.json('login route');
+  const { username, password } = req.body;
+
+  try {
+    const user = await UserModal.findOne({ username });
+    if (!user) {
+      return res.status(404).send({ error: "Username not found" });
+    }
+
+    const passwordCheck = await bcrypt.compare(password, user.password);
+    if (!passwordCheck) {
+      return res.status(400).send({ error: "Invalid password" });
+    }
+
+    const token = generateJwtToken({
+      userId: user._id,
+      username: user.username
+    });
+
+    return res.status(200).send({
+      msg: "Login successful",
+      username: user.username,
+      token,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send({ error: "Internal server error" });
+  }
 }
 
 /**GET: http://localhost:3000/v1/user/steve
