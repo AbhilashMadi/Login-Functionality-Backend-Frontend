@@ -130,21 +130,22 @@ export async function getUser(req, res) {
  */
 export async function updateUser(req, res) {
   try {
-    const { id } = req.query;
+    const { userId } = req.user;
 
-    if (!id) {
-      return res.status(404).send({ error: "User Id not found" });
+    if (userId) {
+      const body = req.body;
+
+      await UserModal.updateOne({ _id: userId }, body);
+      return res.status(201).send({ msg: "Record updated...!✌️" });
+    } else {
+      return res.status(401).send({ error: "User not authenticated" });
     }
-
-    const body = req.body;
-    await UserModal.updateOne({ _id: id }, body);
-
-    return res.status(201).send({ msg: "User record updated✌️" });
   } catch (error) {
     console.error(error);
     return res.status(500).send({ error: "Internal server error" });
   }
 }
+
 
 /**GET: http://localhost:3000/v1/generate-otp */
 export async function generateOTP(req, res) {
