@@ -174,7 +174,11 @@ export async function verifyOTP(req, res) {
  * successfully redirect the user when OTP is valid
 */
 export async function createResetSession(req, res) {
-  res.json('create-reset-session route')
+  if(req.app.locals.resetSession){
+    req.app.locals.resetSession = false; //allow access to this route only once
+    return res.status(201).send({msg:"access granted"})
+  }
+  return res.status(440).send({error: "Session expired"});
 }
 
 /**PUT: http://localhost:3000/v1/reset-password
