@@ -175,7 +175,7 @@ export async function verifyOTP(req, res) {
 */
 export async function createResetSession(req, res) {
   if (!req.app.locals.resetSession) {
-    req.app.locals.resetSession = true; // allow access to this route only once
+    req.app.locals.resetSession = true; // allow access to the route only once
     return res.status(201).send({ msg: "Access granted" });
   }
   return res.status(440).send({ error: "Session expired" });
@@ -207,4 +207,3 @@ export async function resetPassword(req, res) {
     return res.status(500).send({ error: "Internal server error" });
   }
 }
-
