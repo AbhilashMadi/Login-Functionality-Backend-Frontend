@@ -11,7 +11,7 @@ const Layout: FC<ILayout> = (props) => {
   return (
     <>
       <Header />
-      <main className='container'>
+      <main>
         {child}
       </main>
       <Footer />

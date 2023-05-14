@@ -1,37 +1,36 @@
-import React from 'react';
-import { toast } from 'react-hot-toast';
-import CustomButton from '../components/custom/CustomButton';
-import CustomInput from '../components/custom/CustomInput';
+import { FC, useEffect } from 'react';
+import '../scss/username.scss';
 import { Link } from 'react-router-dom';
-import CustomAvatar from '../components/custom/CustomAvatar';
+import avatar from '../assets/profile.png';
 
-const Username = () => {
-
+const Username: FC = () => {
   return (
-    <div className='username'>
-      <div className='username__text'>
-        <h3>Hello Again!!</h3>
-        <p>Explore by connecting with us</p>
+    <div className='container'>
+      <div className='flex justify-center items-center'>
+        <div>
+          <div className='title flex flex-col items-center'>
+            <h4 className='text-5xl font-bold'>Hello Again!</h4>
+            <span className='py-4 text-xl w-2/3 text-center text-gray-5'>
+              Explore more by connecting with us.
+            </span>
+          </div>
+
+          <form className='py-1'>
+            <div className='profile flex justify-center py-4'>
+              <img src={avatar} alt='avatar' />
+            </div>
+            <div className='textbox flex flex-col items-center'>
+              <input type='text' placeholder='Username' />
+              <button type='submit'>Let's Go'</button>
+            </div>
+            <div className='text-center py-4'>
+              <span className='text-gray-500'>Not a member
+                <Link to='/register' className='link'> Register now</Link>
+              </span>
+            </div>
+          </form>
+        </div>
       </div>
-      <CustomAvatar name='user image'/>
-      <div className='username_fileds'>
-        <CustomInput
-          error=''
-          label='Enter your password'
-          name='password'
-          placeholder=''
-          className='username__input'
-          onChange={() => null}
-          type='password'
-          onBlur={() => null} />
-          <CustomButton
-          text='Sign in'
-          className='username_button'
-          />
-      CustomAvatar</div>
-      <footer className='username__footer'>
-        <p>Forgot passowrd <Link to="#" className='username__recover'>Recover Now</Link></p>
-      </footer>
     </div>
   )
 }
