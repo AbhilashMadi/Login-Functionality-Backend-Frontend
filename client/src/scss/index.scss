@@ -23,6 +23,8 @@ html {
 }
 
 body {
+  background-image: url('../assets/Background.png');
+
   #root {
     min-height: 100vh;
     @include flex-center;
