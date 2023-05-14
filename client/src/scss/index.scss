@@ -19,11 +19,17 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
-.container {
-  width: auto;
-  min-height: 100vh;
-  @include flex-center;
-  background-color: var(--main-background);
+body {
+  #root {
+    min-height: 100vh;
+    @include flex-center;
+    @include inter-font;
+  }
+}
+
+.link {
+  @apply text-red-500;
 }
