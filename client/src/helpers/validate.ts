@@ -20,6 +20,26 @@ function usernameVerify(error: FormErros = {}, values: any) {
 /** Validate the login page username */
 export async function usernameValidate(values: any) {
   const errors = usernameVerify({}, values);
-
   return errors;
+}
+
+/** validate password */
+function passwordVerify(error: FormErros = {}, values: any) {
+  if (!values.password) {
+    error.password = CustomToast({ icon: '🥲', message: 'Password is required' });
+  } else if (values.password.length < 8) {
+    error.password = CustomToast({ icon: '😶‍🌫️', message: 'Password must be at least 8 characters' });
+  } else if (!/\d/.test(values.password)) {
+    error.password = CustomToast({ icon: '🫠', message: 'Password must contain at least one digit' });
+  } else if (!/[!@#$%^&*]/.test(values.password)) {
+    error.password = CustomToast({ icon: '🫤', message: 'Password must contain at least one special character (!@#$%^&*)' });
+  }
+
+  return error;
+}
+
+/** Validate the login page password */
+export async function passwordValidate(values: any) {
+  const error = passwordVerify({}, values);
+  return error;
 }

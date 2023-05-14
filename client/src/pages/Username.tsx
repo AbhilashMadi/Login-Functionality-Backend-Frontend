@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import '../scss/username.scss';
 import { Link } from 'react-router-dom';
 import avatar from '../assets/profile.png';
@@ -10,7 +10,7 @@ const Username: FC = () => {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      username: '',
+      password: '',
     },
     validate: usernameValidate,
     validateOnBlur: false,
@@ -41,7 +41,7 @@ const Username: FC = () => {
             </div>
             <div className='flex flex-col items-center gap-6'>
               <input type='text' placeholder='Username' className='textbox' {...formik.getFieldProps('username')} />
-              <button type='submit' className='btn'>Let's Go'</button>
+              <button type='submit' className='btn'>Let's Go</button>
             </div>
             <div className='text-center py-4'>
               <span className='text-gray-500'>Not a member
