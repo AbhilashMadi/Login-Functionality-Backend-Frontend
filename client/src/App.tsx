@@ -4,10 +4,11 @@ import { Routes, Route } from 'react-router-dom';
 import { routes, IRouteObject } from './routes/routes';
 import { ThemeProvider } from './context/ThemeProvider';
 import { Toaster } from 'react-hot-toast';
+import Loading from './components/common/Loading';
 
 const App: FC = (props) => {
   return (
-    <Suspense fallback={<div>loading..</div>}>
+    <Suspense fallback={<Loading />}>
       <ThemeProvider>
         <Toaster
           position='top-right'
