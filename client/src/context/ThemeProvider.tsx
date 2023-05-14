@@ -24,8 +24,6 @@ export const ThemeProvider: FC<IThemeProvider> = ({ children }) => {
     document.getElementById('root')?.setAttribute('data-theme', theme)
   }, [theme]);
 
-  console.log(theme);
-
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}

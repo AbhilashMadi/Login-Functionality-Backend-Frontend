@@ -11,7 +11,7 @@ const App: FC = (props) => {
     <Suspense fallback={<Loading />}>
       <ThemeProvider>
         <Toaster
-          position='top-right'
+          position='top-center'
           reverseOrder={false} />
         <Routes>
           {
