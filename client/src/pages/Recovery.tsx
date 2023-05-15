@@ -20,8 +20,8 @@ const Recovery: FC = () => {
               <span className='py-4 text-sm text-left text-gray-500'>
                 Enter 6 digit OTP sent to your email address.
               </span>
-              <input type='text' placeholder='Username' className='textbox' />
-              <button type='submit' className='btn'>Let's Go</button>
+              <input type='text' placeholder='One Time Password' className='textbox' />
+              <button type='submit' className='btn'>Recvoer Now</button>
             </div>
             <div className='text-center py-4'>
               <span className='text-gray-500'>Not a member

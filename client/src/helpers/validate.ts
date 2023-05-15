@@ -43,3 +43,16 @@ export async function passwordValidate(values: any) {
   const error = passwordVerify({}, values);
   return error;
 }
+
+
+/** validate reset password */
+export async function resetPasswordValidate(values:any) {
+  const errors = passwordVerify({},values);
+
+  if(values.password !== values.confirmPassword){
+    errors.exist = CustomToast({icon:'🤞',message: 'Password not match...!'})
+  }
+
+  return errors;
+  
+}
