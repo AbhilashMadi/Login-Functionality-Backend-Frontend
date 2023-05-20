@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import '../scss/username.scss';
 import { Link } from 'react-router-dom';
 import avatar from '../assets/profile.png';
@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import { passwordValidate } from '../helpers/validate';
 
 const Register: FC = () => {
+  const [file,setFile] = useState('');
 
   const registerFormik = useFormik({
     enableReinitialize: true,
@@ -21,6 +22,12 @@ const Register: FC = () => {
       console.table(values);
     }
   })
+
+  //formik doesn't support the file uploads so making this handler
+  const onUpload = async () => {
+    const base64 = ''; 
+    setFile(base64);
+  }
 
 
   return (
