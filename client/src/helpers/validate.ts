@@ -56,3 +56,28 @@ export async function resetPasswordValidate(values:any) {
   return errors;
   
 }
+
+/** Validate the register form */
+export async function registerValidate(values:any) {
+  const errors = usernameVerify({},values);
+  passwordVerify(errors,values);
+  emailVerify(errors,values);
+
+  return errors;
+}
+
+/** Email verify */
+function emailVerify(error: FormErros = {}, values: any) {
+  if (!values.email) {
+    error.email = CustomToast({ icon: '🥲', message: 'Email is required' });
+  } else if (!isValidEmail(values.email)) {
+    error.email = CustomToast({ icon: '😢', message: 'Invalid email format' });
+  }
+
+  return error;
+}
+
+function isValidEmail(email: string) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}

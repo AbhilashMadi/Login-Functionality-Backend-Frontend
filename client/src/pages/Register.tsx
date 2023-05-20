@@ -3,7 +3,7 @@ import '../scss/username.scss';
 import { Link } from 'react-router-dom';
 import avatar from '../assets/profile.png';
 import { useFormik } from 'formik';
-import { passwordValidate } from '../helpers/validate';
+import { registerValidate } from '../helpers/validate';
 import convertToBase64 from '../helpers/convert';
 
 const Register: FC = () => {
@@ -17,12 +17,13 @@ const Register: FC = () => {
       password: '',
       profile: '',
     },
-    validate: passwordValidate,
+    validate: registerValidate,
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit: async (values) => {
       values = await { ...values, profile: file || '' };
       console.table(values);
+      registerFormik.resetForm();
     },
   });
 
