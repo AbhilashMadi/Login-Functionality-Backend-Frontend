@@ -46,22 +46,22 @@ export async function passwordValidate(values: any) {
 
 
 /** validate reset password */
-export async function resetPasswordValidate(values:any) {
-  const errors = passwordVerify({},values);
+export async function resetPasswordValidate(values: any) {
+  const errors = passwordVerify({}, values);
 
-  if(values.password !== values.confirmPassword){
-    errors.exist = CustomToast({icon:'🤞',message: 'Password not match...!'})
+  if (values.password !== values.confirmPassword) {
+    errors.exist = CustomToast({ icon: '🤞', message: 'Password not match...!' })
   }
 
   return errors;
-  
+
 }
 
 /** Validate the register form */
-export async function registerValidate(values:any) {
-  const errors = usernameVerify({},values);
-  passwordVerify(errors,values);
-  emailVerify(errors,values);
+export async function registerValidate(values: any) {
+  const errors = usernameVerify({}, values);
+  passwordVerify(errors, values);
+  emailVerify(errors, values);
 
   return errors;
 }
@@ -80,4 +80,11 @@ function emailVerify(error: FormErros = {}, values: any) {
 function isValidEmail(email: string) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
+}
+
+
+/** validate the profile page */
+export async function profileValidate(values: any) {
+  const errors = emailVerify({}, values);
+  return errors;
 }
